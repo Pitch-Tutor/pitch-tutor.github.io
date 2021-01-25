@@ -16,8 +16,8 @@ module.exports = {
     mainFields: ['svelte', 'browser', 'module', 'main'],
   },
   output: {
-    path: __dirname + '/public',
-    publicPath: '/public/',
+    path: __dirname + '/docs',
+    publicPath: '/',
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
   },
@@ -86,8 +86,8 @@ module.exports = {
   ],
   devtool: prod ? false : 'inline-source-map',
   devServer: {
-    publicPath: '/public/',
-    contentBase: path.resolve(__dirname, 'public'),
+    publicPath: '/docs/',
+    contentBase: path.resolve(__dirname, 'docs'),
     // proxy: {
     //   '/': 'http://localhost:3000',
     // },

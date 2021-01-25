@@ -1,0 +1,48 @@
+/* roboto-cyrillic-400-normal*/
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    local('Roboto'),
+    local('Roboto-Regular'), url(/roboto-cyrillic-400-normal.woff2) format('woff2'), url(/roboto-cyrillic-400-normal.woff) format('woff');
+  
+}
+
+/* roboto-cyrillic-700-normal*/
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src:
+    local('Roboto Bold'),
+    local('Roboto-Bold'), url(/roboto-cyrillic-700-normal.woff2) format('woff2'), url(/roboto-cyrillic-700-normal.woff) format('woff');
+  
+}
+
+/* roboto-latin-400-normal*/
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    local('Roboto'),
+    local('Roboto-Regular'), url(/roboto-latin-400-normal.woff2) format('woff2'), url(/roboto-latin-400-normal.woff) format('woff');
+  
+}
+
+/* roboto-latin-900-normal*/
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 900;
+  src:
+    local('Roboto Black'),
+    local('Roboto-Black'), url(/roboto-latin-900-normal.woff2) format('woff2'), url(/roboto-latin-900-normal.woff) format('woff');
+  
+}
+

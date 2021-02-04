@@ -86,7 +86,7 @@ module.exports = {
   ],
   devtool: prod ? false : 'inline-source-map',
   devServer: {
-    publicPath: '/docs/',
+    publicPath: '/',
     contentBase: path.resolve(__dirname, 'docs'),
     // proxy: {
     //   '/': 'http://localhost:3000',

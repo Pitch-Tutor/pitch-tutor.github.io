@@ -1,14 +1,17 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
+  import router from '../router.js';
 
   let videoElement;
   let startTimeCount = 5;
   let progressTimeCount = 4 * 60;
+  let playCounterTimeout;
+  let progressCounterTimeout;
 
-  function timeoutStart() {
+  function playCounter() {
     startTimeCount--;
     if (startTimeCount) {
-      setTimeout(timeoutStart, 1000);
+      playCounterTimeout = setTimeout(playCounter, 1000);
     } else {
       videoPlay();
     }
@@ -16,18 +19,27 @@
 
   function videoPlay() {
     videoElement.play();
-    timeoutProgress();
+    progressCounter();
   }
 
-  function timeoutProgress() {
+  function progressCounter() {
     progressTimeCount--;
     if (progressTimeCount) {
-      setTimeout(timeoutProgress, 1000);
+      progressCounterTimeout = setTimeout(progressCounter, 1000);
     }
   }
 
+  function exit() {
+    router.push('/feedback');
+  }
+
   onMount(() => {
-    timeoutStart();
+    playCounter();
+  });
+
+  onDestroy(() => {
+    clearTimeout(progressCounterTimeout);
+    clearTimeout(playCounterTimeout);
   });
 </script>
 
@@ -52,7 +64,8 @@
     muted={true}
     preload="auto"
     disablePictureInPicture="true"
-    bind:this={videoElement}>
+    bind:this={videoElement}
+  >
     <source src="/videos/zoom_1.mp4" type="video/mp4" />
   </video>
 </div>
@@ -61,6 +74,7 @@
     {Math.floor(progressTimeCount / 60)
       .toString()
       .padStart(2, '0')}:{(progressTimeCount % 60).toString().padStart(2, '0')}
+    <button type="button" class="exit" on:click={exit}>Выйти</button>
   </div>
 </div>
 
@@ -73,7 +87,7 @@
 
   .video {
     /* padding-top: 50%; */
-    background-color: #c4c4c4;
+    /* background-color: #c4c4c4; */
     position: relative;
   }
 
@@ -96,11 +110,24 @@
   }
 
   .controls {
-    padding-top: 10px;
+    font-size: 120%;
+    padding: 10px 0 20px;
   }
 
   .controlsRight {
     text-align: right;
     color: #fff;
+  }
+
+  .exit {
+    cursor: pointer;
+    font-size: 75%;
+    vertical-align: top;
+    background: #ff0000;
+    border-radius: 7px;
+    border: 0;
+    color: #fff;
+    padding: 2px 10px 3px;
+    margin-left: 14px;
   }
 </style>

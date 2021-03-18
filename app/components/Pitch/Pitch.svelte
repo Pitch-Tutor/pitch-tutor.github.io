@@ -1,6 +1,7 @@
 <script>
   import { onDestroy, onMount } from 'svelte';
   import router from '../../router.js';
+  import AllLayout from './AllLayout.svelte';
   import OneLayout from './OneLayout.svelte';
   import PresentLayout from './PresentLayout.svelte';
 
@@ -65,6 +66,8 @@
   {/if}
   {#if currentRoute.query.mode === 'one'}
     <OneLayout bind:this={layout} />
+  {:else if currentRoute.query.mode === 'all'}
+    <AllLayout bind:this={layout} />
   {:else}
     <PresentLayout bind:numPages bind:currentPageNum bind:this={layout} />
   {/if}

@@ -116,7 +116,7 @@
         </svg>
         <span class="modeTitle"
           ><input type="radio" name="mode" value="demo" bind:group={mode} />
-          Демонстрация экрана</span
+          Презентация</span
         >
       </label>
       <div class="upload" class:disabled={mode !== 'demo'}>
@@ -127,7 +127,9 @@
     </div>
   </div>
 
-  <div class="time"><button type="submit" class="btn" disabled={!mode}>Установить время</button></div>
+  <div class="time">
+    <button type="submit" class="btn" disabled={!mode || (mode === 'demo' && !pdf)}>Установить время</button>
+  </div>
 </form>
 
 <style>

@@ -1,6 +1,7 @@
 <script>
   import { get } from 'idb-keyval';
   import * as pdfjs from 'pdfjs-dist';
+  import { onDestroy } from 'svelte';
 
   export let numPages;
   export let currentPageNum = 1;
@@ -13,13 +14,22 @@
   let canvasHeight = 100;
   let currentPageDoc;
   let doc;
+  let videoStream;
 
   navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } }).then((stream) => {
+    videoStream = stream;
     videoUserElement.srcObject = stream;
-    console.log(stream);
-    videoUserElement.onloadedmetadata = (e) => {
+    videoUserElement.onloadedmetadata = () => {
       videoUserElement.play();
     };
+  });
+
+  onDestroy(() => {
+    if (videoStream) {
+      videoStream.getVideoTracks().forEach((track) => {
+        track.stop();
+      });
+    }
   });
 
   get('pdf').then((res) => {
@@ -64,7 +74,7 @@
 
   export function play() {
     for (const videoElement of videoElements) {
-      // videoElement.play();
+      videoElement.play();
     }
   }
 

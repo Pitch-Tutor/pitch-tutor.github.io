@@ -9,7 +9,7 @@
 
   let layout;
   let startTimeCount = 5;
-  let progressTimeCount = 4 * 60;
+  let progressTimeCount = +currentRoute.query.time * 60;
   let playCounterTimeout;
   let progressCounterTimeout;
   let numPages;

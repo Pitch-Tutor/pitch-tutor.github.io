@@ -1,19 +1,24 @@
 <script>
   import { onDestroy, onMount } from 'svelte';
+  import useCurrentRoute from 'svelte-easyroute/useCurrentRoute';
   import router from '../../router.js';
   import AllLayout from './AllLayout.svelte';
   import OneLayout from './OneLayout.svelte';
   import PresentLayout from './PresentLayout.svelte';
 
-  export let currentRoute;
-
   let layout;
   let startTimeCount = 5;
-  let progressTimeCount = +currentRoute.query.time * 60;
+  let progressTimeCount;
   let playCounterTimeout;
   let progressCounterTimeout;
   let numPages;
   let currentPageNum;
+  let mode;
+
+  const unsubscribe = useCurrentRoute((currentRoute) => {
+    progressTimeCount = +currentRoute.query.time * 60;
+    mode = currentRoute.query.mode;
+  });
 
   function playCounter() {
     startTimeCount--;
@@ -40,11 +45,12 @@
     router.push('/feedback');
   }
 
-  onMount(() => {
+  onMount(async () => {
     playCounter();
   });
 
   onDestroy(() => {
+    unsubscribe();
     clearTimeout(progressCounterTimeout);
     clearTimeout(playCounterTimeout);
   });
@@ -64,11 +70,11 @@
   {#if startTimeCount}
     <div class="startTimeCount">{startTimeCount}</div>
   {/if}
-  {#if currentRoute.query.mode === 'one'}
+  {#if mode === 'one'}
     <OneLayout bind:this={layout} />
-  {:else if currentRoute.query.mode === 'all'}
+  {:else if mode === 'all'}
     <AllLayout bind:this={layout} />
-  {:else}
+  {:else if mode === 'demo'}
     <PresentLayout bind:numPages bind:currentPageNum bind:this={layout} />
   {/if}
 </div>

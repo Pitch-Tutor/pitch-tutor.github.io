@@ -1,12 +1,19 @@
 <script>
+  import { onDestroy } from 'svelte';
+  import useCurrentRoute from 'svelte-easyroute/useCurrentRoute';
   import router from '../router.js';
   import config from './config.js';
 
-  export let currentRoute;
-
+  let currentRoute;
   let defaultTime;
   let customTime;
   let isEnable = false;
+
+  const unsubscribe = useCurrentRoute((_currentRoute) => {
+    currentRoute = _currentRoute;
+  });
+
+  onDestroy(unsubscribe);
 
   $: isEnable = defaultTime || customTime > 0;
 

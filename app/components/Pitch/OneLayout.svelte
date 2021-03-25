@@ -1,6 +1,8 @@
 <script>
   let videoElement;
 
+  const videoSrc = `/videos/zoom_${Math.floor(Math.random() * 5)}.mp4`;
+
   export function play() {
     videoElement.play();
   }
@@ -15,7 +17,7 @@
   disablePictureInPicture="true"
   bind:this={videoElement}
 >
-  <source src="/videos/zoom_1.mp4" type="video/mp4" />
+  <source src={videoSrc} type="video/mp4" />
 </video>
 
 <style>

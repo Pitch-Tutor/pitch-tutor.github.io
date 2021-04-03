@@ -7,16 +7,16 @@
   import router from './router.js';
 </script>
 
-<style>
-  main {
-    padding: 0 40px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-</style>
-
 <EasyrouteProvider {router}>
   <main>
     <RouterOutlet />
   </main>
 </EasyrouteProvider>
+
+<style>
+  :global(body:not(.pitch)) main {
+    padding: 0 40px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style>

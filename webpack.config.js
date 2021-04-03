@@ -14,6 +14,9 @@ module.exports = {
     },
     extensions: ['.mjs', '.js', '.svelte'],
     mainFields: ['svelte', 'browser', 'module', 'main'],
+    fallback: {
+      fs: false, // face-api.js
+    },
   },
   output: {
     path: __dirname + '/docs',

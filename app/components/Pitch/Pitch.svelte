@@ -46,10 +46,12 @@
   }
 
   onMount(async () => {
+    document.body.classList.add('pitch');
     playCounter();
   });
 
   onDestroy(() => {
+    document.body.classList.remove('pitch');
     unsubscribe();
     clearTimeout(progressCounterTimeout);
     clearTimeout(playCounterTimeout);
@@ -64,35 +66,44 @@
   </style>
 </svelte:head>
 
-<h1>PITCH TUTOR</h1>
+<main>
+  <h1>PITCH TUTOR</h1>
 
-<div class="video">
-  {#if startTimeCount}
-    <div class="startTimeCount">{startTimeCount}</div>
-  {/if}
-  {#if mode === 'one'}
-    <OneLayout bind:this={layout} />
-  {:else if mode === 'all'}
-    <AllLayout bind:this={layout} />
-  {:else if mode === 'demo'}
-    <PresentLayout bind:numPages bind:currentPageNum bind:this={layout} />
-  {/if}
-</div>
-<div class="controls">
-  <div class="controlsPages">
-    {#if numPages}
-      {currentPageNum} / {numPages}
+  <div class="video">
+    {#if startTimeCount}
+      <div class="startTimeCount">{startTimeCount}</div>
+    {/if}
+    {#if mode === 'one'}
+      <OneLayout bind:this={layout} />
+    {:else if mode === 'all'}
+      <AllLayout bind:this={layout} />
+    {:else if mode === 'demo'}
+      <PresentLayout bind:numPages bind:currentPageNum bind:this={layout} />
     {/if}
   </div>
-  <div class="controlsRight">
-    {Math.floor(progressTimeCount / 60)
-      .toString()
-      .padStart(2, '0')}:{(progressTimeCount % 60).toString().padStart(2, '0')}
-    <button type="button" class="exit" on:click={exit}>Выйти</button>
+  <div class="controls">
+    <div class="controlsPages">
+      {#if numPages}
+        {currentPageNum} / {numPages}
+      {/if}
+    </div>
+    <div class="controlsRight">
+      {Math.floor(progressTimeCount / 60)
+        .toString()
+        .padStart(2, '0')}:{(progressTimeCount % 60).toString().padStart(2, '0')}
+      <button type="button" class="exit" on:click={exit}>Выйти</button>
+    </div>
   </div>
-</div>
+</main>
 
 <style>
+  main {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+  }
   h1 {
     font-size: 24px;
     font-weight: 900;
@@ -100,9 +111,8 @@
   }
 
   .video {
-    /* padding-top: 50%; */
-    /* background-color: #c4c4c4; */
     position: relative;
+    flex-grow: 1;
   }
 
   .startTimeCount {

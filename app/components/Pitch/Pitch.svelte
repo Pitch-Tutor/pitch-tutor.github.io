@@ -84,7 +84,13 @@
   <div class="controls">
     <div class="controlsPages">
       {#if numPages}
+        {#if numPages > 1}
+          <button on:click={layout.prev} disabled={currentPageNum === 1}>←</button>
+        {/if}
         {currentPageNum} / {numPages}
+        {#if numPages > 1}
+          <button on:click={layout.next} disabled={currentPageNum === numPages}>→</button>
+        {/if}
       {/if}
     </div>
     <div class="controlsRight">

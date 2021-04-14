@@ -1,36 +1,24 @@
 <script>
   import { get } from 'idb-keyval';
   import * as pdfjs from 'pdfjs-dist';
-  import { onDestroy } from 'svelte';
+  import Webcam from './Webcam.svelte';
 
   export let numPages;
   export let currentPageNum = 1;
+  export function next() {
+    currentPageNum++;
+  }
+  export function prev() {
+    currentPageNum--;
+  }
 
   let videoElements = [];
-  let videoUserElement;
   let pdf;
   let pdfCanvas;
   let canvasWidth;
   let canvasHeight = 100;
   let currentPageDoc;
   let doc;
-  let videoStream;
-
-  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } }).then((stream) => {
-    videoStream = stream;
-    videoUserElement.srcObject = stream;
-    videoUserElement.onloadedmetadata = () => {
-      videoUserElement.play();
-    };
-  });
-
-  onDestroy(() => {
-    if (videoStream) {
-      videoStream.getVideoTracks().forEach((track) => {
-        track.stop();
-      });
-    }
-  });
 
   get('pdf').then((res) => {
     pdf = res;
@@ -93,73 +81,74 @@
 <svelte:window on:keydown={onKeydown} />
 
 <div class="videoContainer">
-  <video
-    width="128"
-    height="72"
-    class="media"
-    muted={true}
-    preload="auto"
-    disablePictureInPicture="true"
-    bind:this={videoElements[0]}
-  >
-    <source src="/videos/zoom_0.mp4" type="video/mp4" />
-  </video>
-
-  <video
-    style="height:72px;width:auto"
-    class="media"
-    muted={true}
-    disablePictureInPicture="true"
-    bind:this={videoUserElement}
-  />
-
-  <video
-    width="128"
-    height="72"
-    class="media"
-    muted={true}
-    preload="auto"
-    disablePictureInPicture="true"
-    bind:this={videoElements[1]}
-  >
-    <source src="/videos/zoom_1.mp4" type="video/mp4" />
-  </video>
-
-  <video
-    width="128"
-    height="72"
-    class="media"
-    muted={true}
-    preload="auto"
-    disablePictureInPicture="true"
-    bind:this={videoElements[2]}
-  >
-    <source src="/videos/zoom_2.mp4" type="video/mp4" />
-  </video>
-
-  <video
-    width="128"
-    height="72"
-    class="media"
-    muted={true}
-    preload="auto"
-    disablePictureInPicture="true"
-    bind:this={videoElements[3]}
-  >
-    <source src="/videos/zoom_3.mp4" type="video/mp4" />
-  </video>
-
-  <video
-    width="128"
-    height="72"
-    class="media"
-    muted={true}
-    preload="auto"
-    disablePictureInPicture="true"
-    bind:this={videoElements[4]}
-  >
-    <source src="/videos/zoom_4.mp4" type="video/mp4" />
-  </video>
+  <div class="media">
+    <video
+      width="128"
+      height="72"
+      class="mediaVideo"
+      muted={true}
+      preload="auto"
+      disablePictureInPicture="true"
+      bind:this={videoElements[0]}
+    >
+      <source src="/videos/zoom_0.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="media mediaWithCamera">
+    <Webcam />
+  </div>
+  <div class="media">
+    <video
+      width="128"
+      height="72"
+      class="mediaVideo"
+      muted={true}
+      preload="auto"
+      disablePictureInPicture="true"
+      bind:this={videoElements[1]}
+    >
+      <source src="/videos/zoom_1.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="media">
+    <video
+      width="128"
+      height="72"
+      class="mediaVideo"
+      muted={true}
+      preload="auto"
+      disablePictureInPicture="true"
+      bind:this={videoElements[2]}
+    >
+      <source src="/videos/zoom_2.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="media">
+    <video
+      width="128"
+      height="72"
+      class="mediaVideo"
+      muted={true}
+      preload="auto"
+      disablePictureInPicture="true"
+      bind:this={videoElements[3]}
+    >
+      <source src="/videos/zoom_3.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="media">
+    <video
+      width="128"
+      height="72"
+      class="mediaVideo"
+      muted={true}
+      preload="auto"
+      disablePictureInPicture="true"
+      bind:this={videoElements[4]}
+    >
+      <source src="/videos/zoom_4.mp4" type="video/mp4" />
+    </video>
+  </div>
 </div>
 <canvas bind:offsetWidth={canvasWidth} width={canvasWidth} height={canvasHeight} bind:this={pdfCanvas} />
 
@@ -175,7 +164,20 @@
     margin-bottom: 4px;
   }
   .media {
+    width: 14.2%;
     /* max-width: 100%; */
     /* height: auto; */
+  }
+  .mediaVideo {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .mediaWithCamera {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
   }
 </style>

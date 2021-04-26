@@ -1,12 +1,12 @@
 <script>
-  import { get, set } from 'idb-keyval';
+  import { del, get, set } from 'idb-keyval';
   import * as pdfjs from 'pdfjs-dist';
   import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
   import router from '../router.js';
 
   pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
   let mode;
-  let pdf;
+  let pdf = null;
   let inputPdf;
   let pdfCanvas;
 
@@ -39,6 +39,11 @@
       };
       reader.readAsArrayBuffer(pdf);
     }
+  }
+
+  function removePdf() {
+    del('pdf');
+    pdf = null;
   }
 
   function submit() {
@@ -115,15 +120,21 @@
           />
         </svg>
         <span class="modeTitle"
-          ><input type="radio" name="mode" value="demo" bind:group={mode} />
+          ><input type="radio" id="demo" name="mode" value="demo" bind:group={mode} />
           Презентация</span
         >
       </label>
-      <div class="upload" class:disabled={mode !== 'demo'}>
-        Загрузите презентацию
-        <input type="file" bind:files={inputPdf} accept="application/pdf" disabled={mode !== 'demo'} />
-        <canvas bind:this={pdfCanvas} class="pdfCanvas" />
-      </div>
+      {#if mode === 'demo'}
+        <div class="upload">
+          {#if !pdf}
+            Загрузите презентацию
+            <input type="file" bind:files={inputPdf} accept="application/pdf" />
+          {:else}
+            <a href={'#'} class="removePdf" on:click|preventDefault={removePdf}>✕</a>
+            <canvas bind:this={pdfCanvas} class="pdfCanvas" />
+          {/if}
+        </div>
+      {/if}
     </div>
   </div>
 
@@ -149,9 +160,9 @@
   }
 
   .modesItem {
-    width: 100%;
+    width: 33%;
+    flex: 1 1 33.3333%;
     border: 10px solid transparent;
-    overflow: hidden;
     vertical-align: top;
   }
 
@@ -177,11 +188,20 @@
 
   .upload {
     margin-top: 18px;
+    position: relative;
     text-align: center;
   }
 
-  .upload.disabled {
-    color: #ccc;
+  .removePdf {
+    padding-top: 1px;
+    position: absolute;
+    right: -10px;
+    background-color: black;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    width: 20px;
+    line-height: 19px;
   }
 
   .time {

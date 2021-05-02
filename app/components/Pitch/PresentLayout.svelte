@@ -15,8 +15,10 @@
   let videoElements = [];
   let pdf;
   let pdfCanvas;
-  let canvasWidth;
+  let canvasWidth = 100;
   let canvasHeight = 100;
+  let canvasOutWidth;
+  let canvasOutHeight;
   let currentPageDoc;
   let doc;
 
@@ -34,7 +36,7 @@
     reader.readAsArrayBuffer(pdf);
   });
 
-  $: renderPdf(canvasWidth);
+  $: renderPdf(canvasOutWidth);
   $: changeCurrentPage(currentPageNum);
 
   function changeCurrentPage(num) {
@@ -47,16 +49,22 @@
     });
   }
 
-  function renderPdf() {
+  let renderTask;
+  function renderPdf(w) {
+    if (renderTask) {
+      renderTask.cancel();
+    }
     if (currentPageDoc) {
       const viewport = currentPageDoc.getViewport({ scale: 1 });
-      const scale = pdfCanvas.width / viewport.width;
-      canvasHeight = viewport.height * scale;
+      let w = viewport.width;
+      canvasHeight = viewport.height;
+      canvasWidth = viewport.width;
       const renderContext = {
         canvasContext: pdfCanvas.getContext('2d'),
-        viewport: currentPageDoc.getViewport({ scale }),
+        viewport: currentPageDoc.getViewport(),
       };
-      currentPageDoc.render(renderContext);
+      renderTask = currentPageDoc.render(renderContext);
+      renderTask.promise.catch((err) => console.log(err));
     }
   }
 
@@ -150,11 +158,27 @@
     </video>
   </div>
 </div>
-<canvas bind:offsetWidth={canvasWidth} width={canvasWidth} height={canvasHeight} bind:this={pdfCanvas} />
+<div class="presentation" bind:offsetWidth={canvasOutWidth} bind:offsetHeight={canvasOutHeight}>
+  <canvas width={canvasWidth} height={canvasHeight} bind:this={pdfCanvas} />
+</div>
 
 <style>
-  canvas {
+  .presentation {
+    flex: 1;
     width: 100%;
+    /* display: flex; */
+    position: relative;
+  }
+
+  canvas {
+    display: block;
+    position: absolute;
+    object-fit: contain;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 
   .videoContainer {
@@ -163,17 +187,18 @@
     justify-content: space-between;
     margin-bottom: 4px;
   }
+
   .media {
-    width: 14.2%;
-    /* max-width: 100%; */
-    /* height: auto; */
+    width: 16.5%;
   }
+
   .mediaVideo {
     object-fit: cover;
     width: 100%;
     height: auto;
     display: block;
   }
+
   .mediaWithCamera {
     position: relative;
     display: flex;

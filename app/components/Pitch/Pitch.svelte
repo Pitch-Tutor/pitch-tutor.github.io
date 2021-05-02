@@ -105,11 +105,12 @@
 <style>
   main {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     flex-direction: column;
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
   }
+
   h1 {
     font-size: 24px;
     font-weight: 900;
@@ -118,7 +119,9 @@
 
   .video {
     position: relative;
-    flex-grow: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .startTimeCount {

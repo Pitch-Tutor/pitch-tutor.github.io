@@ -72,6 +72,7 @@
       </svg>
 
       <span class="modeTitle"><input type="radio" name="mode" value="one" bind:group={mode} /> Один на один</span>
+      <span class="modeDescription">Защита проекта перед 1 инвестором.</span>
     </label>
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <label class="modesItem">
@@ -93,6 +94,7 @@
         <rect x="206.737" y="90.6499" width="80.0125" height="58.0438" fill="#C4C4C4" />
       </svg>
       <span class="modeTitle"><input type="radio" name="mode" value="all" bind:group={mode} /> Все на одного</span>
+      <span class="modeDescription">Защита проекта перед 5 инвесторами.</span>
     </label>
     <!-- svelte-ignore a11y-label-has-associated-control -->
     <div class="modesItem">
@@ -123,6 +125,7 @@
           ><input type="radio" id="demo" name="mode" value="demo" bind:group={mode} />
           Презентация</span
         >
+        <span class="modeDescription">Защита проекта перед 5 инвесторами с интерактивной презентацией.</span>
       </label>
       {#if mode === 'demo'}
         <div class="upload">
@@ -147,6 +150,8 @@
   h1 {
     font-size: 24px;
     font-weight: 900;
+    margin: 0;
+    padding: 16px;
   }
 
   h2 {
@@ -175,6 +180,12 @@
     font-size: 120%;
     display: inline-block;
     padding-top: 12px;
+  }
+
+  .modeDescription {
+    font-size: 90%;
+    display: block;
+    padding-top: 8px;
   }
 
   .modesItem input {
@@ -206,6 +217,6 @@
 
   .time {
     text-align: center;
-    margin-top: 40px;
+    margin: 25px 0 40px;
   }
 </style>

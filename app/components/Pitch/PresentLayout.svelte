@@ -50,13 +50,12 @@
   }
 
   let renderTask;
-  function renderPdf(w) {
+  function renderPdf() {
     if (renderTask) {
       renderTask.cancel();
     }
     if (currentPageDoc) {
       const viewport = currentPageDoc.getViewport({ scale: 1 });
-      let w = viewport.width;
       canvasHeight = viewport.height;
       canvasWidth = viewport.width;
       const renderContext = {

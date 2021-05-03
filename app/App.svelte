@@ -2,6 +2,7 @@
   import '@fontsource/roboto/cyrillic-400.css';
   import '@fontsource/roboto/cyrillic-700.css';
   import '@fontsource/roboto/latin-400.css';
+  import '@fontsource/roboto/latin-700.css';
   import '@fontsource/roboto/latin-900.css';
   import { EasyrouteProvider, RouterOutlet } from 'svelte-easyroute';
   import router from './router.js';

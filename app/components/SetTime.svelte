@@ -55,6 +55,8 @@
   h1 {
     font-size: 24px;
     font-weight: 900;
+    margin: 0;
+    padding: 16px;
   }
 
   h2 {

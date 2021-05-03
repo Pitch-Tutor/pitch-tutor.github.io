@@ -28,6 +28,16 @@
   
 }
 
+/* roboto-latin-700-normal*/
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/roboto-latin-700-normal.woff2) format('woff2'), url(/roboto-latin-700-normal.woff) format('woff');
+  
+}
+
 /* roboto-latin-900-normal*/
 @font-face {
   font-family: 'Roboto';

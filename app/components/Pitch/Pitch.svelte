@@ -38,6 +38,8 @@
     progressTimeCount--;
     if (progressTimeCount) {
       progressCounterTimeout = setTimeout(progressCounter, 1000);
+    } else {
+      setTimeout(exit, 1000);
     }
   }
 

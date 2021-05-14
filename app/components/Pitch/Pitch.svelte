@@ -14,10 +14,12 @@
   let numPages;
   let currentPageNum;
   let mode;
+  let useCounter = false;
 
   const unsubscribe = useCurrentRoute((currentRoute) => {
     progressTimeCount = +currentRoute.query.time * 60;
     mode = currentRoute.query.mode;
+    useCounter = !!currentRoute.query.useCounter;
   });
 
   function playCounter() {
@@ -96,9 +98,11 @@
       {/if}
     </div>
     <div class="controlsRight">
-      {Math.floor(progressTimeCount / 60)
-        .toString()
-        .padStart(2, '0')}:{(progressTimeCount % 60).toString().padStart(2, '0')}
+      {#if useCounter}
+        {Math.floor(progressTimeCount / 60)
+          .toString()
+          .padStart(2, '0')}:{(progressTimeCount % 60).toString().padStart(2, '0')}
+      {/if}
       <button type="button" class="exit" on:click={exit}>Выйти</button>
     </div>
   </div>

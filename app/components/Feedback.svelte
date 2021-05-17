@@ -10,15 +10,23 @@
 
 <h2>Мы будем рады обратной связи</h2>
 
-<p class="description">
-  Мы хотим улучшать продукт, опираясь на ваши желания и потребности. Пройдите, пожалуйста, короткий опрос. Ваша обратная
-  связь – это наша мотивация. (Кнопка: пройти опрос)
-</p>
-<p class="description">
-  Если вы оставите нам свои контактные данные, мы уведомим вас о новых версиях тренажера и оповестим о запуске Roobiq.
-  (Кнопка: оставить имя и почту) или сразу форму, если не сложно.
-</p>
-<p class="description">Если вам тренажер полезен и интересен для вас, вы можете поддержать его: (Кнопка: Донат)</p>
+<div class="table">
+  <div class="row">
+    <div class="column side">
+      <button class="btn" type="button">Пройти опрос</button>
+    </div>
+    <p class="column description">
+      Мы хотим улучшать продукт, опираясь на ваши желания и потребности. Пройдите, пожалуйста, короткий опрос. Ваша
+      обратная связь – это наша мотивация.
+    </p>
+  </div>
+  <div class="row">
+    <div class="column side">
+      <button class="btn" type="button">Поддержать проект</button>
+    </div>
+    <p class="column description">Если вам тренажер полезен и интересен для вас, вы можете поддержать его.</p>
+  </div>
+</div>
 <p class="continue"><button class="btn" on:click={train}>Продолжить<br />тренироваться</button></p>
 
 <style>
@@ -32,15 +40,39 @@
   h2 {
     color: #4487ec;
     text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .table {
+    display: table;
+  }
+
+  .row {
+    display: table-row;
+  }
+
+  .column {
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  .side .btn {
+    width: 100%;
+    font-size: 100%;
   }
 
   .description {
     font-size: 120%;
     max-width: 600px;
-    margin: 30px auto;
+    padding: 0 0 30px 30px;
   }
 
   .continue {
     text-align: center;
+  }
+  .continue .btn {
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
   }
 </style>

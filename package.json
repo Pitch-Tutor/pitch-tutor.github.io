@@ -9,22 +9,23 @@
     "watch": "webpack serve"
   },
   "dependencies": {
-    "@fontsource/roboto": "4.2.3",
-    "css-loader": "5.2.4",
+    "@fontsource/roboto": "4.3.0",
+    "css-loader": "5.2.5",
     "face-api.js": "^0.22.2",
     "file-loader": "6.2.0",
     "idb-keyval": "5.0.5",
     "mini-css-extract-plugin": "1.6.0",
     "pdfjs-dist": "2.7.570",
-    "svelte": "3.38.1",
+    "svelte": "3.38.2",
     "svelte-easyroute": "3.1.2",
     "svelte-loader": "3.1.1",
+    "svelte-portal": "2.1.2",
     "url-loader": "4.1.1",
-    "webpack": "5.36.2",
-    "webpack-cli": "4.6.0"
+    "webpack": "5.37.1",
+    "webpack-cli": "4.7.0"
   },
   "devDependencies": {
-    "eslint": "7.25.0",
+    "eslint": "7.27.0",
     "eslint-plugin-svelte3": "3.2.0",
     "webpack-dev-server": "3.11.2"
   }

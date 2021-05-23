@@ -1,5 +1,5 @@
 import Router from 'svelte-easyroute';
-import Feedback from './components/Feedback.svelte';
+import Feedback from './components/Feedback/Feedback.svelte';
 import Homepage from './components/Homepage.svelte';
 import Pitch from './components/Pitch/Pitch.svelte';
 import SetTime from './components/SetTime.svelte';

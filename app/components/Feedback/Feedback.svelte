@@ -1,11 +1,20 @@
 <script>
-  import router from '../router.js';
+  import router from '../../router.js';
+  import Result from './Result.svelte';
 
   function train() {
     router.push('/train-pick');
   }
+
+  let isShowResult = true;
+  function closeResult() {
+    isShowResult = false;
+  }
 </script>
 
+{#if isShowResult}
+  <Result on:close={closeResult} />
+{/if}
 <h1>PITCH TUTOR</h1>
 
 <h2>Мы будем рады обратной связи</h2>
@@ -13,7 +22,12 @@
 <div class="table">
   <div class="row">
     <div class="column side">
-      <button class="btn" type="button">Пройти опрос</button>
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfH7ghWV_C1lKpKYgQbSJzEHNfPZDRtvIwz3Zi8F_dap6g2qg/viewform?usp=sf_link"
+        target="_blank"
+        class="btn"
+        type="button">Пройти опрос</a
+      >
     </div>
     <p class="column description">
       Мы хотим улучшать продукт, опираясь на ваши желания и потребности. Пройдите, пожалуйста, короткий опрос. Ваша

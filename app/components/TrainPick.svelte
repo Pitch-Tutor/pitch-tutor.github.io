@@ -23,20 +23,20 @@
 
   function renderPdf(pdfCanvas) {
     let reader = new FileReader();
-      reader.onload = function (evt) {
-        const data = new Uint8Array(evt.target.result);
-        pdfjs.getDocument(data).promise.then((doc) => {
-          doc.getPage(1).then((page) => {
-            const scale = pdfCanvas.width / page.getViewport({ scale: 1 }).width;
-            const renderContext = {
-              canvasContext: pdfCanvas.getContext('2d'),
-              viewport: page.getViewport({ scale }),
-            };
-            page.render(renderContext);
-          });
+    reader.onload = function (evt) {
+      const data = new Uint8Array(evt.target.result);
+      pdfjs.getDocument(data).promise.then((doc) => {
+        doc.getPage(1).then((page) => {
+          const scale = pdfCanvas.width / page.getViewport({ scale: 1 }).width;
+          const renderContext = {
+            canvasContext: pdfCanvas.getContext('2d'),
+            viewport: page.getViewport({ scale }),
+          };
+          page.render(renderContext);
         });
-      };
-      reader.readAsArrayBuffer(pdf);
+      });
+    };
+    reader.readAsArrayBuffer(pdf);
   }
 
   $: {
@@ -52,6 +52,10 @@
 
   function submit() {
     router.push(`/set-time?mode=${mode}`);
+  }
+
+  function track(name) {
+    ym(80316241, 'reachGoal', name);
   }
 </script>
 
@@ -75,7 +79,9 @@
         <rect x="46.25" y="20.1187" width="240.5" height="128.575" fill="#C4C4C4" />
       </svg>
 
-      <span class="modeTitle"><input type="radio" name="mode" value="one" bind:group={mode} /> Один на один</span>
+      <span class="modeTitle"
+        ><input type="radio" name="mode" value="one" on:click={() => track('mode_one')} bind:group={mode} /> Один на один</span
+      >
       <span class="modeDescription">Защита проекта перед 1 инвестором.</span>
     </label>
     <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -97,7 +103,9 @@
         <rect x="206.737" y="32.375" width="80.0125" height="58.0438" fill="#C4C4C4" />
         <rect x="206.737" y="90.6499" width="80.0125" height="58.0438" fill="#C4C4C4" />
       </svg>
-      <span class="modeTitle"><input type="radio" name="mode" value="all" bind:group={mode} /> Все на одного</span>
+      <span class="modeTitle"
+        ><input type="radio" name="mode" value="all" on:click={() => track('mode_all')} bind:group={mode} /> Все на одного</span
+      >
       <span class="modeDescription">Защита проекта перед 5 инвесторами.</span>
     </label>
     <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -126,7 +134,14 @@
           />
         </svg>
         <span class="modeTitle"
-          ><input type="radio" id="demo" name="mode" value="demo" bind:group={mode} />
+          ><input
+            type="radio"
+            id="demo"
+            name="mode"
+            value="demo"
+            on:click={() => track('mode_demo')}
+            bind:group={mode}
+          />
           Презентация</span
         >
         <span class="modeDescription">Защита проекта перед 5 инвесторами с интерактивной презентацией.</span>

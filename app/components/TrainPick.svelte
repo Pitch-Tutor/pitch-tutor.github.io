@@ -21,9 +21,8 @@
     }
   }
 
-  $: {
-    if (pdf) {
-      let reader = new FileReader();
+  function renderPdf(pdfCanvas) {
+    let reader = new FileReader();
       reader.onload = function (evt) {
         const data = new Uint8Array(evt.target.result);
         pdfjs.getDocument(data).promise.then((doc) => {
@@ -38,6 +37,11 @@
         });
       };
       reader.readAsArrayBuffer(pdf);
+  }
+
+  $: {
+    if (pdf && pdfCanvas) {
+      renderPdf(pdfCanvas);
     }
   }
 

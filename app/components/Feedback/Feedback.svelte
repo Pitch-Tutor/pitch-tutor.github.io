@@ -10,6 +10,10 @@
   function closeResult() {
     isShowResult = false;
   }
+
+  function onDonate() {
+    ym(80316241, 'reachGoal', 'click to donate');
+  }
 </script>
 
 {#if isShowResult}
@@ -36,7 +40,9 @@
   </div>
   <div class="row">
     <div class="column side">
-      <button class="btn" type="button">Поддержать проект</button>
+      <a href="https://yoomoney.ru/to/41001225869392" target="_blank" class="btn" on:click={onDonate}
+        >Поддержать проект</a
+      >
     </div>
     <p class="column description">Если вам тренажер полезен и интересен для вас, вы можете поддержать его.</p>
   </div>

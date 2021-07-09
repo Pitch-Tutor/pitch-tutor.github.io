@@ -1,82 +1,93 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Pitch Tutor</title>
+    <link rel="stylesheet" href="/bundles/app.bundle.css" />
+    <style>
+      html {
+        font-family: Roboto;
+        background: #fff;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
-<head>
-  <meta charset="utf8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>Pitch Tutor</title>
-  <link rel="stylesheet" href="/bundles/app.bundle.css" />
-  <style>
-    html {
-      font-family: Roboto;
-      background: #fff;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+      body {
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
-    body {
-      min-height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+      a {
+        color: #4487ec;
+      }
 
-    a {
-      color: #4487ec;
-    }
+      .pitch {
+        background-color: #000;
+      }
 
-    .pitch {
-      background-color: #000;
-    }
+      a.btn {
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        text-decoration: none;
+      }
 
-    a.btn {
-      display: inline-block;
-      box-sizing: border-box;
-      text-align: center;
-      text-decoration: none;
-    }
+      .btn {
+        background-color: #4487ec;
+        box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.2);
+        border-radius: 40px;
+        color: #fff;
+        border: 0;
+        font-size: 24px;
+        padding: 0.7em 1.4em;
+      }
 
-    .btn {
-      background-color: #4487ec;
-      box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.2);
-      border-radius: 40px;
-      color: #fff;
-      border: 0;
-      font-size: 24px;
-      padding: 0.7em 1.4em;
-    }
+      .btn:hover {
+        background-color: #1e69db;
+      }
 
-    .btn:hover {
-      background-color: #1e69db;
-    }
+      .btn:active {
+        background-color: #1e69db;
+      }
 
-    .btn:active {
-      background-color: #1e69db;
-    }
+      .btn:disabled {
+        background-color: rgba(230, 230, 230, 0.8);
+      }
+    </style>
+  </head>
 
-    .btn:disabled {
-      background-color: rgba(230, 230, 230, 0.8);
-    }
-  </style>
-</head>
-
-<body>
-  <script src="/bundles/app.bundle.js"></script>
+  <body>
+    <script src="/bundles/app.bundle.js"></script>
     <!-- Yandex.Metrika counter -->
-  <script>
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <script>
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
 
-    ym(80316241, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-    });
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/80316241" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
-</body>
-
+      ym(80316241, 'init', {
+        defer: true,
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
+    </script>
+    <noscript
+      ><div><img src="https://mc.yandex.ru/watch/80316241" style="position: absolute; left: -9999px" alt="" /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </body>
 </html>

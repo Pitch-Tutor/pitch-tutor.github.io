@@ -39,14 +39,6 @@
           <br />И не забывайте дышать =)
         </div>
       </div>
-      <div class="footer">
-        <h5>Полезное для вас:</h5>
-        <ol>
-          <li><a href={'#'}>Упражнения для уверенной речи на презентации</a></li>
-          <li><a href={'#'}>Как уверенно донести свою мысль</a></li>
-          <li><a href={'#'}>Что самое важное в презентации</a></li>
-        </ol>
-      </div>
       <button on:click={close} class="close">
         <svg fill="none" height="21" viewBox="0 0 20 21" width="20" xmlns="http://www.w3.org/2000/svg"
           ><g stroke="#000"
@@ -92,16 +84,10 @@
   .content {
     background-color: #fff;
     border: 0 solid #c4c4c4;
-    border-width: 0 0.5px;
+    border-width: 0 0.5px 0.5px;
+    border-radius: 0 0 30px 30px;
     padding: 16px 27px;
     font-size: 14px;
-  }
-
-  .footer {
-    color: #fff;
-    background: #1b1f1f;
-    border-radius: 0 0 30px 30px;
-    padding: 4px 27px 8px;
   }
 
   .details {
@@ -115,15 +101,6 @@
 
   dd {
     margin: 16px 0;
-  }
-
-  ol {
-    padding-left: 0;
-    list-style-position: inside;
-  }
-
-  li {
-    padding-left: 0;
   }
 
   .num {

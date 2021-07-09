@@ -6,6 +6,10 @@
   import '@fontsource/roboto/latin-900.css';
   import { EasyrouteProvider, RouterOutlet } from 'svelte-easyroute';
   import router from './router.js';
+
+  router.afterEach((to, from) => {
+    window.ym(80316241, 'hit', to.fullPath);
+  });
 </script>
 
 <EasyrouteProvider {router}>
